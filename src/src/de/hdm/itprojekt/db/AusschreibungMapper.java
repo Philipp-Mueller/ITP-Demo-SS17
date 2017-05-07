@@ -25,23 +25,23 @@ public class AusschreibungMapper {
           Statement stmt = con.createStatement();
 
           /*
-           * ZunÃ¤chst schauen wir nach, welches der momentan hÃ¶chste
-           * PrimÃ¤rschlÃ¼sselwert ist.
+           * Zunächst schauen wir nach, welches der momentan nähste
+           * Primärschlüsselwert ist.
            */
           ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
               + "FROM ausschreibung ");
 
-          // Wenn wir etwas zurÃ¼ckerhalten, kann dies nur einzeilig sein
+          // Wenn wir etwas zurückerhalten, kann dies nur einzeilig sein
           if (rs.next()) {
             /*
-             * c erhÃ¤lt den bisher maximalen, nun um 1 inkrementierten
-             * PrimÃ¤rschlÃ¼ssel.
+             * a erhält den bisher maximalen, nun um 1 inkrementierten
+             * Primärschlüssel.
              */
         	a.setId(rs.getInt("maxid") + 1);
 
             stmt = con.createStatement();
 
-            // Jetzt erst erfolgt die tatsÃ¤chliche EinfÃ¼geoperation
+            // Jetzt erst erfolgt die tatsächliche Einfügeoperation
             stmt.executeUpdate("INSERT INTO ausschreibung (id, ...) "
                 + "VALUES (" + a.getId() + ",'"  "','"
                 "')");
@@ -52,13 +52,13 @@ public class AusschreibungMapper {
         }
 
         /*
-         * RÃ¼ckgabe, des evtl. korrigierten Customers.
+         * Rückgabe, der evtl. korrigierten Ausschreibung.
          * 
          * HINWEIS: Da in Java nur Referenzen auf Objekte und keine physischen
-         * Objekte Ã¼bergeben werden, wÃ¤re die Anpassung des Customer-Objekts auch
-         * ohne diese explizite RÃ¼ckgabe auï¿½erhalb dieser Methode sichtbar. Die
-         * explizite RÃ¼ckgabe von c ist eher ein Stilmittel, um zu signalisieren,
-         * dass sich das Objekt evtl. im Laufe der Methode verÃ¤ndert hat.
+         * Objekte übergeben werden, wÃ¤re die Anpassung des Auschreibung-Objekts auch
+         * ohne diese explizite Rückgabe außerhalb dieser Methode sichtbar. Die
+         * explizite Rückgabe von a ist eher ein Stilmittel, um zu signalisieren,
+         * dass sich das Objekt evtl. im Laufe der Methode verändert hat.
          */
         return a;
       }
@@ -85,7 +85,7 @@ public class AusschreibungMapper {
       /**
        * Löschen der Daten eines Ausschreibung-Objekts aus der Datenbank.
        * 
-       * @param c das aus der DB zu lÃ¶schende "Objekt"
+       * Parameter a das aus der DB zu löschende "Objekt"
        */
       public void delete(Ausschreibung a) {
         Connection con = DBConnection.connection();

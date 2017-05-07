@@ -55,7 +55,9 @@ private static BeteiligungMapper beteiligungMapper = null;
         /*
          * Rückgabe, der evtl. korrigierten Beteiligung.
          * 
-         * HINWEIS:  Die
+          * HINWEIS: Da in Java nur Referenzen auf Objekte und keine physischen
+         * Objekte übergeben werden, wÃ¤re die Anpassung des Auschreibung-Objekts auch
+         * ohne diese explizite Rückgabe außerhalb dieser Methode sichtbar. Die
          * explizite Rückgabe von beteiligung ist eher ein Stilmittel, um zu signalisieren,
          * dass sich das Objekt evtl. im Laufe der Methode verändert hat.
          */
