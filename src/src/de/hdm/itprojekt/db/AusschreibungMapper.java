@@ -1,5 +1,6 @@
 package src.de.hdm.itprojekt.db;
 import java.sql.*;
+import java.util.Vector;
 
 import de.hdm.thies.bankProjekt.server.db.DBConnection;
 import de.hdm.thies.bankProjekt.shared.bo.Customer;
@@ -18,6 +19,40 @@ public class AusschreibungMapper {
         return ausschreibungMapper;
 	
     }
+    
+    
+    public Vector<Ausschreibung> findAll() {   //Hole alle Ausschreibungen aus Datenbank
+        Connection con = DBConnection.connection();
+        // Ergebnisvektor vorbereiten
+        Vector<Ausschreibung> result = new Vector<Ausschreibung>();
+
+        try {
+          Statement stmt = con.createStatement();
+
+          ResultSet rs = stmt.executeQuery("SELECT id, titel, ersteller "
+               + "FROM ausschreibung "  + "ORDER BY id");
+
+          // Für jeden Eintrag im Suchergebnis wird nun ein Ausschreibung-Objekt
+          // erstellt.
+          while (rs.next()) {
+            Ausschreibung a = new Ausschreibung();
+            a.setId(rs.getInt("id"));
+            a.setTitel(rs.getString("titel"));
+            a.setErsteller(rs.getString("ersteller"));
+
+            // Hinzufügen des neuen Objekts zum Ergebnisvektor
+            result.addElement(a);
+          }
+        }
+        catch (SQLException e) {
+          e.printStackTrace();
+        }
+
+        // Ergebnisvektor zurückgeben
+        return result;
+      }
+    
+    
     public Ausschreibung insert(Ausschreibung a) {
         Connection con = DBConnection.connection();
 
