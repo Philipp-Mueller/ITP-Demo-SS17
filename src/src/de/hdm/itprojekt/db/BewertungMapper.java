@@ -26,23 +26,23 @@ private static BewertungMapper bewertungMapper = null;
           Statement stmt = con.createStatement();
 
           /*
-           * ZunÃ¤chst schauen wir nach, welches der momentan hÃ¶chste
-           * PrimÃ¤rschlÃ¼sselwert ist.
+           * Zunächst schauen wir nach, welches der momentan höchste
+           * Primärschlüsselwert ist.
            */
           ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
               + "FROM bewertung ");
 
-          // Wenn wir etwas zurÃ¼ckerhalten, kann dies nur einzeilig sein
+          // Wenn wir etwas zurückerhalten, kann dies nur einzeilig sein
           if (rs.next()) {
             /*
-             * c erhÃ¤lt den bisher maximalen, nun um 1 inkrementierten
-             * PrimÃ¤rschlÃ¼ssel.
+             * bewertung erhält den bisher maximalen, nun um 1 inkrementierten
+             * Primärschlüssel.
              */
         	bewertung.setId(rs.getInt("maxid") + 1);
 
             stmt = con.createStatement();
 
-            // Jetzt erst erfolgt die tatsÃ¤chliche EinfÃ¼geoperation
+            // Jetzt erst erfolgt die tatsächliche Einfügeoperation
             stmt.executeUpdate("INSERT INTO bewertung (id, ...) "
                 + "VALUES (" + bewertung.getId() + ",'"  "','"
                 "')");
@@ -53,14 +53,14 @@ private static BewertungMapper bewertungMapper = null;
         }
 
         /*
-         * RÃ¼ckgabe, des evtl. korrigierten Customers.
+            * Rückgabe, der evtl. korrigierten Bewertung.
          * 
-         * HINWEIS: Da in Java nur Referenzen auf Objekte und keine physischen
-         * Objekte Ã¼bergeben werden, wÃ¤re die Anpassung des Customer-Objekts auch
-         * ohne diese explizite RÃ¼ckgabe auï¿½erhalb dieser Methode sichtbar. Die
-         * explizite RÃ¼ckgabe von c ist eher ein Stilmittel, um zu signalisieren,
-         * dass sich das Objekt evtl. im Laufe der Methode verÃ¤ndert hat.
-         */
+          * HINWEIS: Da in Java nur Referenzen auf Objekte und keine physischen
+         * Objekte übergeben werden, wäre die Anpassung des Auschreibung-Objekts auch
+         * ohne diese explizite Rückgabe außerhalb dieser Methode sichtbar. Die
+         * explizite Rückgabe von bewertung ist eher ein Stilmittel, um zu signalisieren,
+         * dass sich das Objekt evtl. im Laufe der Methode verändert hat.
+         * */
         return bewertung;
       }
     
@@ -85,7 +85,7 @@ private static BewertungMapper bewertungMapper = null;
       /**
        * LÃ¶schen der Daten eines Bewertung-Objekts aus der Datenbank.
        * 
-       * @param c das aus der DB zu lÃ¶schende "Objekt"
+       * @param bewertung das aus der DB zu löschende "Objekt"
        */
       public void delete(Bewertung bewertung) {
         Connection con = DBConnection.connection();

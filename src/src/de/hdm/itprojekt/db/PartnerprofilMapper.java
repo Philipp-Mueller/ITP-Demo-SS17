@@ -22,23 +22,23 @@ private static PartnerprofilMapper partnerprofilMapper = null;
           Statement stmt = con.createStatement();
 
           /*
-           * ZunÃ¤chst schauen wir nach, welches der momentan hÃ¶chste
-           * PrimÃ¤rschlÃ¼sselwert ist.
+           * Zunächst schauen wir nach, welches der momentan höchste
+           * Primärschlüsselwert ist.
            */
           ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
               + "FROM partnerprofil ");
 
-          // Wenn wir etwas zurÃ¼ckerhalten, kann dies nur einzeilig sein
+          // Wenn wir etwas zurückerhalten, kann dies nur einzeilig sein
           if (rs.next()) {
             /*
-             * c erhÃ¤lt den bisher maximalen, nun um 1 inkrementierten
-             * PrimÃ¤rschlÃ¼ssel.
+             * profil erhält den bisher maximalen, nun um 1 inkrementierten
+             * Primärschlüssel.
              */
         	profil.setId(rs.getInt("maxid") + 1);
 
             stmt = con.createStatement();
 
-            // Jetzt erst erfolgt die tatsÃ¤chliche EinfÃ¼geoperation
+            // Jetzt erst erfolgt die tatsächliche Einfügeoperation
             stmt.executeUpdate("INSERT INTO partnerprofil (id, ...) "
                 + "VALUES (" + profil.getId() + ",'"  "','"
                 "')");
@@ -49,13 +49,13 @@ private static PartnerprofilMapper partnerprofilMapper = null;
         }
 
         /*
-         * RÃ¼ckgabe, des evtl. korrigierten Customers.
+         * Rückgabe, des evtl. korrigierten Profils.
          * 
          * HINWEIS: Da in Java nur Referenzen auf Objekte und keine physischen
-         * Objekte Ã¼bergeben werden, wÃ¤re die Anpassung des Customer-Objekts auch
-         * ohne diese explizite RÃ¼ckgabe auï¿½erhalb dieser Methode sichtbar. Die
-         * explizite RÃ¼ckgabe von c ist eher ein Stilmittel, um zu signalisieren,
-         * dass sich das Objekt evtl. im Laufe der Methode verÃ¤ndert hat.
+         * Objekte übergeben werden, wÃ¤re die Anpassung des Auschreibung-Objekts auch
+         * ohne diese explizite Rückgabe außerhalb dieser Methode sichtbar. Die
+         * explizite Rückgabe von profil ist eher ein Stilmittel, um zu signalisieren,
+         * dass sich das Objekt evtl. im Laufe der Methode verändert hat.
          */
         return profil;
       }
@@ -79,9 +79,9 @@ private static PartnerprofilMapper partnerprofilMapper = null;
       }
 
       /**
-       * LÃ¶schen der Daten eines Profil-Objekts aus der Datenbank.
+       * Löschen der Daten eines Profil-Objekts aus der Datenbank.
        * 
-       * @param c das aus der DB zu lÃ¶schende "Objekt"
+       * @param profil das aus der DB zu löschende "Objekt"
        */
       public void delete(Partnerprofil profil) {
         Connection con = DBConnection.connection();

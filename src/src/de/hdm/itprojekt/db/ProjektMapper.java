@@ -23,23 +23,23 @@ private static ProjektMapper projektMapper = null;
           Statement stmt = con.createStatement();
 
           /*
-           * ZunÃ¤chst schauen wir nach, welches der momentan hÃ¶chste
-           * PrimÃ¤rschlÃ¼sselwert ist.
+           * Zunächst schauen wir nach, welches der momentan höchste
+           * Primärschlüsselwert ist.
            */
           ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
               + "FROM projekt ");
 
-          // Wenn wir etwas zurÃ¼ckerhalten, kann dies nur einzeilig sein
+          // Wenn wir etwas zurückerhalten, kann dies nur einzeilig sein
           if (rs.next()) {
             /*
-             * p erhÃ¤lt den bisher maximalen, nun um 1 inkrementierten
-             * PrimÃ¤rschlÃ¼ssel.
+             * p erhält den bisher maximalen, nun um 1 inkrementierten
+             * PrimÃäschlüssel.
              */
         	p.setId(rs.getInt("maxid") + 1);
 
             stmt = con.createStatement();
 
-            // Jetzt erst erfolgt die tatsÃ¤chliche EinfÃ¼geoperation
+            // Jetzt erst erfolgt die tatsächliche Einfügeoperation
             stmt.executeUpdate("INSERT INTO projekt (id, ...) "
                 + "VALUES (" + p.getId() + ",'"  "','"
                 "')");
@@ -53,10 +53,11 @@ private static ProjektMapper projektMapper = null;
          * Rückgabe, des evtl. korrigierten Projekts.
          * 
          * HINWEIS: Da in Java nur Referenzen auf Objekte und keine physischen
-         * Objekte Ã¼bergeben werden, wÃ¤re die Anpassung des Customer-Objekts auch
-         * ohne diese explizite RÃ¼ckgabe auï¿½erhalb dieser Methode sichtbar. Die
-         * explizite RÃ¼ckgabe von c ist eher ein Stilmittel, um zu signalisieren,
-         * dass sich das Objekt evtl. im Laufe der Methode verÃ¤ndert hat.
+         * Objekte übergeben werden, wÃ¤re die Anpassung des Auschreibung-Objekts auch
+         * ohne diese explizite Rückgabe außerhalb dieser Methode sichtbar. Die
+         * explizite Rückgabe von p ist eher ein Stilmittel, um zu signalisieren,
+         * dass sich das Objekt evtl. im Laufe der Methode verändert hat.
+         
          */
         return p;
       }
@@ -80,9 +81,9 @@ private static ProjektMapper projektMapper = null;
       }
 
       /**
-       * LÃ¶schen der Daten eines Projekt-Objekts aus der Datenbank.
+       * Löschen der Daten eines Projekt-Objekts aus der Datenbank.
        * 
-       * @param c das aus der DB zu lÃ¶schende "Objekt"
+       * @param p das aus der DB zu löschende "Objekt"
        */
       public void delete(Projekt p) {
         Connection con = DBConnection.connection();

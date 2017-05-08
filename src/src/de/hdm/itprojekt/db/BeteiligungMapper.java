@@ -26,13 +26,13 @@ private static BeteiligungMapper beteiligungMapper = null;
           Statement stmt = con.createStatement();
 
           /*
-           * ZunÃ¤chst schauen wir nach, welches der momentan hÃ¶chste
-           * PrimÃ¤rschlÃ¼sselwert ist.
+           * Zunächst schauen wir nach, welches der momentan höchste
+           * Primärschlüsselwert ist.
            */
           ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
               + "FROM beteiligung ");
 
-          // Wenn wir etwas zurÃ¼ckerhalten, kann dies nur einzeilig sein
+          // Wenn wir etwas zurückerhalten, kann dies nur einzeilig sein
           if (rs.next()) {
             /*
              * beteiligung erhält den bisher maximalen, nun um 1 inkrementierten
@@ -42,7 +42,7 @@ private static BeteiligungMapper beteiligungMapper = null;
 
             stmt = con.createStatement();
 
-            // Jetzt erst erfolgt die tatsÃ¤chliche EinfÃ¼geoperation
+            // Jetzt erst erfolgt die tatsächliche Einfügeoperation
             stmt.executeUpdate("INSERT INTO beteiligung (id, ...) "
                 + "VALUES (" + beteiligung.getId() + ",'"  "','"
                 "')");
@@ -56,7 +56,7 @@ private static BeteiligungMapper beteiligungMapper = null;
          * Rückgabe, der evtl. korrigierten Beteiligung.
          * 
           * HINWEIS: Da in Java nur Referenzen auf Objekte und keine physischen
-         * Objekte übergeben werden, wÃ¤re die Anpassung des Auschreibung-Objekts auch
+         * Objekte übergeben werden, wäre die Anpassung des Auschreibung-Objekts auch
          * ohne diese explizite Rückgabe außerhalb dieser Methode sichtbar. Die
          * explizite Rückgabe von beteiligung ist eher ein Stilmittel, um zu signalisieren,
          * dass sich das Objekt evtl. im Laufe der Methode verändert hat.
@@ -86,7 +86,7 @@ private static BeteiligungMapper beteiligungMapper = null;
       /**
        * Löschen der Daten eines Beteiligung-Objekts aus der Datenbank.
        * 
-       * @param c das aus der DB zu lÃ¶schende "Objekt"
+       * @param beteiligung das aus der DB zu löschende "Objekt"
        */
       public void delete(Beteiligung beteiligung) {
         Connection con = DBConnection.connection();

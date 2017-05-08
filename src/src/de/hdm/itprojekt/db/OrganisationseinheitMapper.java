@@ -23,23 +23,23 @@ private static OrganisationseinheitMapper organisationseinheitMapper = null;
           Statement stmt = con.createStatement();
 
           /*
-           * ZunÃ¤chst schauen wir nach, welches der momentan hÃ¶chste
-           * PrimÃ¤rschlÃ¼sselwert ist.
+           * Zunächst schauen wir nach, welches der momentan höchste
+           * Primärschlüsselwert ist..
            */
           ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
               + "FROM organisationseinheit ");
 
-          // Wenn wir etwas zurÃ¼ckerhalten, kann dies nur einzeilig sein
+          // Wenn wir etwas zurückerhalten, kann dies nur einzeilig sein
           if (rs.next()) {
             /*
-             * c erhÃ¤lt den bisher maximalen, nun um 1 inkrementierten
-             * PrimÃ¤rschlÃ¼ssel.
+             * o erhält den bisher maximalen, nun um 1 inkrementierten
+             * Primärschlüssel.
              */
             o.setId(rs.getInt("maxid") + 1);
 
             stmt = con.createStatement();
 
-            // Jetzt erst erfolgt die tatsÃ¤chliche EinfÃ¼geoperation
+            // Jetzt erst erfolgt die tatsächliche Einfügeoperation
             stmt.executeUpdate("INSERT INTO organisationseinheit (id, ...) "
                 + "VALUES (" + o.getId() + ",'"  "','"
                 "')");
@@ -50,13 +50,13 @@ private static OrganisationseinheitMapper organisationseinheitMapper = null;
         }
 
         /*
-         * RÃ¼ckgabe, des evtl. korrigierten Customers.
+         * Rückgabe, des evtl. korrigierten Organisationseinheit.
          * 
-         * HINWEIS: Da in Java nur Referenzen auf Objekte und keine physischen
-         * Objekte Ã¼bergeben werden, wÃ¤re die Anpassung des Customer-Objekts auch
-         * ohne diese explizite RÃ¼ckgabe auï¿½erhalb dieser Methode sichtbar. Die
-         * explizite RÃ¼ckgabe von c ist eher ein Stilmittel, um zu signalisieren,
-         * dass sich das Objekt evtl. im Laufe der Methode verÃ¤ndert hat.
+        * HINWEIS: Da in Java nur Referenzen auf Objekte und keine physischen
+         * Objekte übergeben werden, wÃ¤re die Anpassung des Auschreibung-Objekts auch
+         * ohne diese explizite Rückgabe außerhalb dieser Methode sichtbar. Die
+         * explizite Rückgabe von o ist eher ein Stilmittel, um zu signalisieren,
+         * dass sich das Objekt evtl. im Laufe der Methode verändert hat.
          */
         return o;
       }
@@ -80,9 +80,9 @@ private static OrganisationseinheitMapper organisationseinheitMapper = null;
       }
 
       /**
-       * LÃ¶schen der Daten eines Orga-Objekts aus der Datenbank.
+       * Löschen der Daten eines Orga-Objekts aus der Datenbank.
        * 
-       * @param c das aus der DB zu lÃ¶schende "Objekt"
+       * @param o das aus der DB zu löschende "Objekt"
        */
       public void delete(Organisationseinheit o) {
         Connection con = DBConnection.connection();

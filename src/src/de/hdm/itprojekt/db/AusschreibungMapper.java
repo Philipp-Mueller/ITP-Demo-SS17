@@ -25,7 +25,7 @@ public class AusschreibungMapper {
           Statement stmt = con.createStatement();
 
           /*
-           * Zunächst schauen wir nach, welches der momentan nähste
+           * Zunächst schauen wir nach, welches der momentan höchste
            * Primärschlüsselwert ist.
            */
           ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "

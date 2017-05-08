@@ -26,13 +26,13 @@ public class BewerbungMapper {
           Statement stmt = con.createStatement();
 
           /*
-           * ZunÃ¤chst schauen wir nach, welches der momentan hÃ¶chste
-           * PrimÃ¤rschlÃ¼sselwert ist.
+           * Zunächst schauen wir nach, welches der momentan höchste
+           * Primärschlüsselwert ist.
            */
           ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid "
               + "FROM bewerbung ");
 
-          // Wenn wir etwas zurÃ¼ckerhalten, kann dies nur einzeilig sein
+          // Wenn wir etwas zurückerhalten, kann dies nur einzeilig sein
           if (rs.next()) {
             /*
              * b erhält den bisher maximalen, nun um 1 inkrementierten
@@ -42,7 +42,7 @@ public class BewerbungMapper {
 
             stmt = con.createStatement();
 
-            // Jetzt erst erfolgt die tatsÃ¤chliche EinfÃ¼geoperation
+            // Jetzt erst erfolgt die tatsächliche Einfügeoperation
             stmt.executeUpdate("INSERT INTO bewerbung (id, ...) "
                 + "VALUES (" + b.getId() + ",'"  "','"
                 "')");
@@ -53,13 +53,13 @@ public class BewerbungMapper {
         }
 
         /*
-         * RÃ¼ckgabe, des evtl. korrigierten Customers.
+         * Rückgabe, der evtl. korrigierten Bewerbung.
          * 
-         * HINWEIS: Da in Java nur Referenzen auf Objekte und keine physischen
-         * Objekte Ã¼bergeben werden, wÃ¤re die Anpassung des Customer-Objekts auch
-         * ohne diese explizite RÃ¼ckgabe auï¿½erhalb dieser Methode sichtbar. Die
-         * explizite RÃ¼ckgabe von b ist eher ein Stilmittel, um zu signalisieren,
-         * dass sich das Objekt evtl. im Laufe der Methode verÃ¤ndert hat.
+          * HINWEIS: Da in Java nur Referenzen auf Objekte und keine physischen
+         * Objekte übergeben werden, wäre die Anpassung des Auschreibung-Objekts auch
+         * ohne diese explizite Rückgabe außerhalb dieser Methode sichtbar. Die
+         * explizite Rückgabe von b ist eher ein Stilmittel, um zu signalisieren,
+         * dass sich das Objekt evtl. im Laufe der Methode verändert hat.
          */
         return b;
       }
@@ -84,9 +84,9 @@ public class BewerbungMapper {
       }
 
       /**
-       * LÃ¶schen der Daten eines Bewerbung-Objekts aus der Datenbank.
+       * Löschen der Daten eines Bewerbung-Objekts aus der Datenbank.
        * 
-       * @param c das aus der DB zu lÃ¶schende "Objekt"
+       * @param b das aus der DB zu lÃ¶schende "Objekt"
        */
       public void delete(Bewerbung b) {
         Connection con = DBConnection.connection();
