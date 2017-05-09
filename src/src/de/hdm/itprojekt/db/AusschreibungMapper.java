@@ -29,7 +29,7 @@ public class AusschreibungMapper {
         try {
           Statement stmt = con.createStatement();
 
-          ResultSet rs = stmt.executeQuery("SELECT id, titel, ersteller "
+          ResultSet rs = stmt.executeQuery("SELECT id, titel, ersteller, erstelldatum "
                + "FROM ausschreibung "  + "ORDER BY id");
 
           // Für jeden Eintrag im Suchergebnis wird nun ein Ausschreibung-Objekt
@@ -39,6 +39,7 @@ public class AusschreibungMapper {
             a.setId(rs.getInt("id"));
             a.setTitel(rs.getString("titel"));
             a.setErsteller(rs.getString("ersteller"));
+            a.setDatum(rs.getDate("erstelldatum"));
 
             // Hinzufügen des neuen Objekts zum Ergebnisvektor
             result.addElement(a);
